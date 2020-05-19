@@ -300,7 +300,7 @@ class DefaultApi(object):
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: None
+        :return: str
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -326,7 +326,7 @@ class DefaultApi(object):
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: None
+        :return: tuple(str, status_code(int), headers(HTTPHeaderDict))
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -392,7 +392,279 @@ class DefaultApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type=None,  # noqa: E501
+            response_type='str',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            _host=local_var_host,
+            collection_formats=collection_formats)
+
+    def index_by_image_url(self, model_id, image_url, **kwargs):  # noqa: E501
+        """Index by Using Image URL  # noqa: E501
+
+        Index by Using Image URL  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.index_by_image_url(model_id, image_url, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str model_id: Model ID (required)
+        :param str image_url: Image URL (required)
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: str
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.index_by_image_url_with_http_info(model_id, image_url, **kwargs)  # noqa: E501
+
+    def index_by_image_url_with_http_info(self, model_id, image_url, **kwargs):  # noqa: E501
+        """Index by Using Image URL  # noqa: E501
+
+        Index by Using Image URL  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.index_by_image_url_with_http_info(model_id, image_url, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str model_id: Model ID (required)
+        :param str image_url: Image URL (required)
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: tuple(str, status_code(int), headers(HTTPHeaderDict))
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        local_var_hosts = [
+            'https://api.classifyai.com'
+        ]
+        local_var_host = local_var_hosts[0]
+        if kwargs.get('_host_index'):
+            _host_index = int(kwargs.get('_host_index'))
+            if _host_index < 0 or _host_index >= len(local_var_hosts):
+                raise ApiValueError(
+                    "Invalid host index. Must be 0 <= index < %s"
+                    % len(local_var_host)
+                )
+            local_var_host = local_var_hosts[_host_index]
+        local_var_params = locals()
+
+        all_params = [
+            'model_id',
+            'image_url'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params and key != "_host_index":
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method index_by_image_url" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'model_id' is set
+        if self.api_client.client_side_validation and ('model_id' not in local_var_params or  # noqa: E501
+                                                        local_var_params['model_id'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `model_id` when calling `index_by_image_url`")  # noqa: E501
+        # verify the required parameter 'image_url' is set
+        if self.api_client.client_side_validation and ('image_url' not in local_var_params or  # noqa: E501
+                                                        local_var_params['image_url'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `image_url` when calling `index_by_image_url`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+        if 'model_id' in local_var_params and local_var_params['model_id'] is not None:  # noqa: E501
+            query_params.append(('model_id', local_var_params['model_id']))  # noqa: E501
+        if 'image_url' in local_var_params and local_var_params['image_url'] is not None:  # noqa: E501
+            query_params.append(('image_url', local_var_params['image_url']))  # noqa: E501
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['x-api-key']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/index_by_image_url', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='str',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            _host=local_var_host,
+            collection_formats=collection_formats)
+
+    def index_image(self, model_id, **kwargs):  # noqa: E501
+        """Index Local Image  # noqa: E501
+
+        Index Local Image  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.index_image(model_id, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str model_id: Model ID (required)
+        :param file file:
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: str
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.index_image_with_http_info(model_id, **kwargs)  # noqa: E501
+
+    def index_image_with_http_info(self, model_id, **kwargs):  # noqa: E501
+        """Index Local Image  # noqa: E501
+
+        Index Local Image  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.index_image_with_http_info(model_id, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str model_id: Model ID (required)
+        :param file file:
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: tuple(str, status_code(int), headers(HTTPHeaderDict))
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        local_var_hosts = [
+            'https://api.classifyai.com'
+        ]
+        local_var_host = local_var_hosts[0]
+        if kwargs.get('_host_index'):
+            _host_index = int(kwargs.get('_host_index'))
+            if _host_index < 0 or _host_index >= len(local_var_hosts):
+                raise ApiValueError(
+                    "Invalid host index. Must be 0 <= index < %s"
+                    % len(local_var_host)
+                )
+            local_var_host = local_var_hosts[_host_index]
+        local_var_params = locals()
+
+        all_params = [
+            'model_id',
+            'file'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params and key != "_host_index":
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method index_image" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'model_id' is set
+        if self.api_client.client_side_validation and ('model_id' not in local_var_params or  # noqa: E501
+                                                        local_var_params['model_id'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `model_id` when calling `index_image`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+        if 'model_id' in local_var_params and local_var_params['model_id'] is not None:  # noqa: E501
+            query_params.append(('model_id', local_var_params['model_id']))  # noqa: E501
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+        if 'file' in local_var_params:
+            local_var_files['file'] = local_var_params['file']  # noqa: E501
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['multipart/form-data'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['x-api-key']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/index_image', 'POST',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='str',  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501

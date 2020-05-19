@@ -363,8 +363,8 @@ conf = openapi_client.Configuration(
         """
         return [
             {
-                'url': "/",
-                'description': "No description provided",
+                'url': "https://api.classifyai.com",
+                'description': "Classify API",
             }
         ]
 

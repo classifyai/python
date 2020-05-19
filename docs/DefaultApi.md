@@ -1,12 +1,14 @@
 # openapi_client.DefaultApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.classifyai.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_new_model**](DefaultApi.md#create_new_model) | **PUT** /models | Create New Model
 [**delete_model**](DefaultApi.md#delete_model) | **DELETE** /models | Delete Model
 [**get_models_list**](DefaultApi.md#get_models_list) | **GET** /models | Get Models List
+[**index_by_image_url**](DefaultApi.md#index_by_image_url) | **GET** /index_by_image_url | Index by Using Image URL
+[**index_image**](DefaultApi.md#index_image) | **POST** /index_image | Index Local Image
 [**tag_image_by_url**](DefaultApi.md#tag_image_by_url) | **GET** /predict_by_image_url | Tag Image by Using Image Url
 [**tag_local_image**](DefaultApi.md#tag_local_image) | **POST** /predict | Predict by Image
 [**update_model**](DefaultApi.md#update_model) | **POST** /models | Update Model
@@ -28,10 +30,10 @@ import time
 import openapi_client
 from openapi_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://api.classifyai.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
-    host = "http://localhost"
+    host = "https://api.classifyai.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -41,7 +43,7 @@ configuration = openapi_client.Configuration(
 
 # Configure API key authorization: x-api-key
 configuration = openapi_client.Configuration(
-    host = "http://localhost",
+    host = "https://api.classifyai.com",
     api_key = {
         'x-api-key': 'YOUR_API_KEY'
     }
@@ -106,10 +108,10 @@ import time
 import openapi_client
 from openapi_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://api.classifyai.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
-    host = "http://localhost"
+    host = "https://api.classifyai.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -119,7 +121,7 @@ configuration = openapi_client.Configuration(
 
 # Configure API key authorization: x-api-key
 configuration = openapi_client.Configuration(
-    host = "http://localhost",
+    host = "https://api.classifyai.com",
     api_key = {
         'x-api-key': 'YOUR_API_KEY'
     }
@@ -169,7 +171,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_models_list**
-> get_models_list()
+> str get_models_list()
 
 Get Models List
 
@@ -184,10 +186,10 @@ import time
 import openapi_client
 from openapi_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://api.classifyai.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
-    host = "http://localhost"
+    host = "https://api.classifyai.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -197,7 +199,7 @@ configuration = openapi_client.Configuration(
 
 # Configure API key authorization: x-api-key
 configuration = openapi_client.Configuration(
-    host = "http://localhost",
+    host = "https://api.classifyai.com",
     api_key = {
         'x-api-key': 'YOUR_API_KEY'
     }
@@ -212,7 +214,8 @@ with openapi_client.ApiClient(configuration) as api_client:
     
     try:
         # Get Models List
-        api_instance.get_models_list()
+        api_response = api_instance.get_models_list()
+        pprint(api_response)
     except ApiException as e:
         print("Exception when calling DefaultApi->get_models_list: %s\n" % e)
 ```
@@ -222,7 +225,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+**str**
 
 ### Authorization
 
@@ -237,8 +240,169 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Query executed succesfully. |  -  |
-**204** | No projects created yet. |  -  |
 **401** | You don&#39;t have authorization to get the model list. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **index_by_image_url**
+> str index_by_image_url(model_id, image_url)
+
+Index by Using Image URL
+
+Index by Using Image URL
+
+### Example
+
+* Api Key Authentication (x-api-key):
+```python
+from __future__ import print_function
+import time
+import openapi_client
+from openapi_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.classifyai.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = openapi_client.Configuration(
+    host = "https://api.classifyai.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: x-api-key
+configuration = openapi_client.Configuration(
+    host = "https://api.classifyai.com",
+    api_key = {
+        'x-api-key': 'YOUR_API_KEY'
+    }
+)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['x-api-key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with openapi_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = openapi_client.DefaultApi(api_client)
+    model_id = 'model_id_example' # str | Model ID
+image_url = 'image_url_example' # str | Image URL
+
+    try:
+        # Index by Using Image URL
+        api_response = api_instance.index_by_image_url(model_id, image_url)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DefaultApi->index_by_image_url: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **model_id** | **str**| Model ID | 
+ **image_url** | **str**| Image URL | 
+
+### Return type
+
+**str**
+
+### Authorization
+
+[x-api-key](../README.md#x-api-key)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Image Indexed |  -  |
+**400** | Bad request, parameter or format error. Please check your query, image format and image size. |  -  |
+**401** | You are not authorized for this operation. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **index_image**
+> str index_image(model_id, file=file)
+
+Index Local Image
+
+Index Local Image
+
+### Example
+
+* Api Key Authentication (x-api-key):
+```python
+from __future__ import print_function
+import time
+import openapi_client
+from openapi_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.classifyai.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = openapi_client.Configuration(
+    host = "https://api.classifyai.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: x-api-key
+configuration = openapi_client.Configuration(
+    host = "https://api.classifyai.com",
+    api_key = {
+        'x-api-key': 'YOUR_API_KEY'
+    }
+)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['x-api-key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with openapi_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = openapi_client.DefaultApi(api_client)
+    model_id = 'model_id_example' # str | Model ID
+file = '/path/to/file' # file |  (optional)
+
+    try:
+        # Index Local Image
+        api_response = api_instance.index_image(model_id, file=file)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DefaultApi->index_image: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **model_id** | **str**| Model ID | 
+ **file** | **file**|  | [optional] 
+
+### Return type
+
+**str**
+
+### Authorization
+
+[x-api-key](../README.md#x-api-key)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Image Indexed |  -  |
+**400** | Bad request, parameter or format error. Please check your query, image format and image size. |  -  |
+**401** | You are not authorized for this operation. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -258,10 +422,10 @@ import time
 import openapi_client
 from openapi_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://api.classifyai.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
-    host = "http://localhost"
+    host = "https://api.classifyai.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -271,7 +435,7 @@ configuration = openapi_client.Configuration(
 
 # Configure API key authorization: x-api-key
 configuration = openapi_client.Configuration(
-    host = "http://localhost",
+    host = "https://api.classifyai.com",
     api_key = {
         'x-api-key': 'YOUR_API_KEY'
     }
@@ -338,10 +502,10 @@ import time
 import openapi_client
 from openapi_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://api.classifyai.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
-    host = "http://localhost"
+    host = "https://api.classifyai.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -351,7 +515,7 @@ configuration = openapi_client.Configuration(
 
 # Configure API key authorization: x-api-key
 configuration = openapi_client.Configuration(
-    host = "http://localhost",
+    host = "https://api.classifyai.com",
     api_key = {
         'x-api-key': 'YOUR_API_KEY'
     }
@@ -418,10 +582,10 @@ import time
 import openapi_client
 from openapi_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://api.classifyai.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
-    host = "http://localhost"
+    host = "https://api.classifyai.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -431,7 +595,7 @@ configuration = openapi_client.Configuration(
 
 # Configure API key authorization: x-api-key
 configuration = openapi_client.Configuration(
-    host = "http://localhost",
+    host = "https://api.classifyai.com",
     api_key = {
         'x-api-key': 'YOUR_API_KEY'
     }

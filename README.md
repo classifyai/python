@@ -52,10 +52,10 @@ import openapi_client
 from openapi_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://api.classifyai.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
-    host = "http://localhost"
+    host = "https://api.classifyai.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -65,7 +65,7 @@ configuration = openapi_client.Configuration(
 
 # Configure API key authorization: x-api-key
 configuration = openapi_client.Configuration(
-    host = "http://localhost",
+    host = "https://api.classifyai.com",
     api_key = {
         'x-api-key': 'YOUR_API_KEY'
     }
@@ -90,13 +90,15 @@ with openapi_client.ApiClient(configuration) as api_client:
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.classifyai.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DefaultApi* | [**create_new_model**](docs/DefaultApi.md#create_new_model) | **PUT** /models | Create New Model
 *DefaultApi* | [**delete_model**](docs/DefaultApi.md#delete_model) | **DELETE** /models | Delete Model
 *DefaultApi* | [**get_models_list**](docs/DefaultApi.md#get_models_list) | **GET** /models | Get Models List
+*DefaultApi* | [**index_by_image_url**](docs/DefaultApi.md#index_by_image_url) | **GET** /index_by_image_url | Index by Using Image URL
+*DefaultApi* | [**index_image**](docs/DefaultApi.md#index_image) | **POST** /index_image | Index Local Image
 *DefaultApi* | [**tag_image_by_url**](docs/DefaultApi.md#tag_image_by_url) | **GET** /predict_by_image_url | Tag Image by Using Image Url
 *DefaultApi* | [**tag_local_image**](docs/DefaultApi.md#tag_local_image) | **POST** /predict | Predict by Image
 *DefaultApi* | [**update_model**](docs/DefaultApi.md#update_model) | **POST** /models | Update Model
@@ -105,6 +107,7 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [InlineObject](docs/InlineObject.md)
+ - [InlineObject1](docs/InlineObject1.md)
 
 
 ## Documentation For Authorization

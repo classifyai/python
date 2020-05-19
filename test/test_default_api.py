@@ -50,6 +50,20 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_index_by_image_url(self):
+        """Test case for index_by_image_url
+
+        Index by Using Image URL  # noqa: E501
+        """
+        pass
+
+    def test_index_image(self):
+        """Test case for index_image
+
+        Index Local Image  # noqa: E501
+        """
+        pass
+
     def test_tag_image_by_url(self):
         """Test case for tag_image_by_url
 
