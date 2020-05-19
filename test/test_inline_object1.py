@@ -37,6 +37,8 @@ class TestInlineObject1(unittest.TestCase):
         # model = openapi_client.models.inline_object1.InlineObject1()  # noqa: E501
         if include_optional :
             return InlineObject1(
+                model_id = '0', 
+                tag = '0', 
                 file = bytes(b'blah')
             )
         else :

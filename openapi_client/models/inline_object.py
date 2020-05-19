@@ -34,45 +34,100 @@ class InlineObject(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'file': 'file'
+        'image_url': 'str',
+        'tag': 'str',
+        'model_id': 'str'
     }
 
     attribute_map = {
-        'file': 'file'
+        'image_url': 'image_url',
+        'tag': 'tag',
+        'model_id': 'model_id'
     }
 
-    def __init__(self, file=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, image_url=None, tag=None, model_id=None, local_vars_configuration=None):  # noqa: E501
         """InlineObject - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
-        self._file = None
+        self._image_url = None
+        self._tag = None
+        self._model_id = None
         self.discriminator = None
 
-        if file is not None:
-            self.file = file
+        self.image_url = image_url
+        self.tag = tag
+        self.model_id = model_id
 
     @property
-    def file(self):
-        """Gets the file of this InlineObject.  # noqa: E501
+    def image_url(self):
+        """Gets the image_url of this InlineObject.  # noqa: E501
 
 
-        :return: The file of this InlineObject.  # noqa: E501
-        :rtype: file
+        :return: The image_url of this InlineObject.  # noqa: E501
+        :rtype: str
         """
-        return self._file
+        return self._image_url
 
-    @file.setter
-    def file(self, file):
-        """Sets the file of this InlineObject.
+    @image_url.setter
+    def image_url(self, image_url):
+        """Sets the image_url of this InlineObject.
 
 
-        :param file: The file of this InlineObject.  # noqa: E501
-        :type: file
+        :param image_url: The image_url of this InlineObject.  # noqa: E501
+        :type: str
         """
+        if self.local_vars_configuration.client_side_validation and image_url is None:  # noqa: E501
+            raise ValueError("Invalid value for `image_url`, must not be `None`")  # noqa: E501
 
-        self._file = file
+        self._image_url = image_url
+
+    @property
+    def tag(self):
+        """Gets the tag of this InlineObject.  # noqa: E501
+
+
+        :return: The tag of this InlineObject.  # noqa: E501
+        :rtype: str
+        """
+        return self._tag
+
+    @tag.setter
+    def tag(self, tag):
+        """Sets the tag of this InlineObject.
+
+
+        :param tag: The tag of this InlineObject.  # noqa: E501
+        :type: str
+        """
+        if self.local_vars_configuration.client_side_validation and tag is None:  # noqa: E501
+            raise ValueError("Invalid value for `tag`, must not be `None`")  # noqa: E501
+
+        self._tag = tag
+
+    @property
+    def model_id(self):
+        """Gets the model_id of this InlineObject.  # noqa: E501
+
+
+        :return: The model_id of this InlineObject.  # noqa: E501
+        :rtype: str
+        """
+        return self._model_id
+
+    @model_id.setter
+    def model_id(self, model_id):
+        """Sets the model_id of this InlineObject.
+
+
+        :param model_id: The model_id of this InlineObject.  # noqa: E501
+        :type: str
+        """
+        if self.local_vars_configuration.client_side_validation and model_id is None:  # noqa: E501
+            raise ValueError("Invalid value for `model_id`, must not be `None`")  # noqa: E501
+
+        self._model_id = model_id
 
     def to_dict(self):
         """Returns the model properties as a dict"""

@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import openapi_client
-from openapi_client.models.inline_object import InlineObject  # noqa: E501
+from openapi_client.models.inline_object2 import InlineObject2  # noqa: E501
 from openapi_client.rest import ApiException
 
-class TestInlineObject(unittest.TestCase):
-    """InlineObject unit test stubs"""
+class TestInlineObject2(unittest.TestCase):
+    """InlineObject2 unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,26 +30,22 @@ class TestInlineObject(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test InlineObject
+        """Test InlineObject2
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = openapi_client.models.inline_object.InlineObject()  # noqa: E501
+        # model = openapi_client.models.inline_object2.InlineObject2()  # noqa: E501
         if include_optional :
-            return InlineObject(
-                image_url = '0', 
-                tag = '0', 
+            return InlineObject2(
+                file = bytes(b'blah'), 
                 model_id = '0'
             )
         else :
-            return InlineObject(
-                image_url = '0',
-                tag = '0',
-                model_id = '0',
+            return InlineObject2(
         )
 
-    def testInlineObject(self):
-        """Test InlineObject"""
+    def testInlineObject2(self):
+        """Test InlineObject2"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

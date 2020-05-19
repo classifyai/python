@@ -401,18 +401,17 @@ class DefaultApi(object):
             _host=local_var_host,
             collection_formats=collection_formats)
 
-    def index_by_image_url(self, model_id, image_url, **kwargs):  # noqa: E501
+    def index_by_image_url(self, inline_object, **kwargs):  # noqa: E501
         """Index by Using Image URL  # noqa: E501
 
         Index by Using Image URL  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.index_by_image_url(model_id, image_url, async_req=True)
+        >>> thread = api.index_by_image_url(inline_object, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
-        :param str model_id: Model ID (required)
-        :param str image_url: Image URL (required)
+        :param InlineObject inline_object: (required)
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
@@ -420,25 +419,24 @@ class DefaultApi(object):
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: str
+        :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        return self.index_by_image_url_with_http_info(model_id, image_url, **kwargs)  # noqa: E501
+        return self.index_by_image_url_with_http_info(inline_object, **kwargs)  # noqa: E501
 
-    def index_by_image_url_with_http_info(self, model_id, image_url, **kwargs):  # noqa: E501
+    def index_by_image_url_with_http_info(self, inline_object, **kwargs):  # noqa: E501
         """Index by Using Image URL  # noqa: E501
 
         Index by Using Image URL  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.index_by_image_url_with_http_info(model_id, image_url, async_req=True)
+        >>> thread = api.index_by_image_url_with_http_info(inline_object, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
-        :param str model_id: Model ID (required)
-        :param str image_url: Image URL (required)
+        :param InlineObject inline_object: (required)
         :param _return_http_data_only: response data without head status code
                                        and headers
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -448,7 +446,7 @@ class DefaultApi(object):
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -468,8 +466,7 @@ class DefaultApi(object):
         local_var_params = locals()
 
         all_params = [
-            'model_id',
-            'image_url'
+            'inline_object'
         ]
         all_params.extend(
             [
@@ -488,24 +485,16 @@ class DefaultApi(object):
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
-        # verify the required parameter 'model_id' is set
-        if self.api_client.client_side_validation and ('model_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['model_id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `model_id` when calling `index_by_image_url`")  # noqa: E501
-        # verify the required parameter 'image_url' is set
-        if self.api_client.client_side_validation and ('image_url' not in local_var_params or  # noqa: E501
-                                                        local_var_params['image_url'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `image_url` when calling `index_by_image_url`")  # noqa: E501
+        # verify the required parameter 'inline_object' is set
+        if self.api_client.client_side_validation and ('inline_object' not in local_var_params or  # noqa: E501
+                                                        local_var_params['inline_object'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `inline_object` when calling `index_by_image_url`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
-        if 'model_id' in local_var_params and local_var_params['model_id'] is not None:  # noqa: E501
-            query_params.append(('model_id', local_var_params['model_id']))  # noqa: E501
-        if 'image_url' in local_var_params and local_var_params['image_url'] is not None:  # noqa: E501
-            query_params.append(('image_url', local_var_params['image_url']))  # noqa: E501
 
         header_params = {}
 
@@ -513,22 +502,24 @@ class DefaultApi(object):
         local_var_files = {}
 
         body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
+        if 'inline_object' in local_var_params:
+            body_params = local_var_params['inline_object']
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
             ['application/json'])  # noqa: E501
 
         # Authentication setting
         auth_settings = ['x-api-key']  # noqa: E501
 
         return self.api_client.call_api(
-            '/index_by_image_url', 'GET',
+            '/index_by_image_url', 'POST',
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='str',  # noqa: E501
+            response_type=None,  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
@@ -537,17 +528,18 @@ class DefaultApi(object):
             _host=local_var_host,
             collection_formats=collection_formats)
 
-    def index_image(self, model_id, **kwargs):  # noqa: E501
+    def index_image(self, **kwargs):  # noqa: E501
         """Index Local Image  # noqa: E501
 
         Index Local Image  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.index_image(model_id, async_req=True)
+        >>> thread = api.index_image(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
-        :param str model_id: Model ID (required)
+        :param str model_id:
+        :param str tag:
         :param file file:
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
@@ -561,19 +553,20 @@ class DefaultApi(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        return self.index_image_with_http_info(model_id, **kwargs)  # noqa: E501
+        return self.index_image_with_http_info(**kwargs)  # noqa: E501
 
-    def index_image_with_http_info(self, model_id, **kwargs):  # noqa: E501
+    def index_image_with_http_info(self, **kwargs):  # noqa: E501
         """Index Local Image  # noqa: E501
 
         Index Local Image  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.index_image_with_http_info(model_id, async_req=True)
+        >>> thread = api.index_image_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
-        :param str model_id: Model ID (required)
+        :param str model_id:
+        :param str tag:
         :param file file:
         :param _return_http_data_only: response data without head status code
                                        and headers
@@ -605,6 +598,7 @@ class DefaultApi(object):
 
         all_params = [
             'model_id',
+            'tag',
             'file'
         ]
         all_params.extend(
@@ -624,23 +618,21 @@ class DefaultApi(object):
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
-        # verify the required parameter 'model_id' is set
-        if self.api_client.client_side_validation and ('model_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['model_id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `model_id` when calling `index_image`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
-        if 'model_id' in local_var_params and local_var_params['model_id'] is not None:  # noqa: E501
-            query_params.append(('model_id', local_var_params['model_id']))  # noqa: E501
 
         header_params = {}
 
         form_params = []
         local_var_files = {}
+        if 'model_id' in local_var_params:
+            form_params.append(('model_id', local_var_params['model_id']))  # noqa: E501
+        if 'tag' in local_var_params:
+            form_params.append(('tag', local_var_params['tag']))  # noqa: E501
         if 'file' in local_var_params:
             local_var_files['file'] = local_var_params['file']  # noqa: E501
 
@@ -809,18 +801,18 @@ class DefaultApi(object):
             _host=local_var_host,
             collection_formats=collection_formats)
 
-    def tag_local_image(self, model_id, **kwargs):  # noqa: E501
+    def tag_local_image(self, **kwargs):  # noqa: E501
         """Predict by Image  # noqa: E501
 
         Send a local image to tag  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.tag_local_image(model_id, async_req=True)
+        >>> thread = api.tag_local_image(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
-        :param str model_id: Type your trained model id to predict. You get your model's id from Classify Dashboard. (required)
         :param file file:
+        :param str model_id:
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
@@ -833,20 +825,20 @@ class DefaultApi(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        return self.tag_local_image_with_http_info(model_id, **kwargs)  # noqa: E501
+        return self.tag_local_image_with_http_info(**kwargs)  # noqa: E501
 
-    def tag_local_image_with_http_info(self, model_id, **kwargs):  # noqa: E501
+    def tag_local_image_with_http_info(self, **kwargs):  # noqa: E501
         """Predict by Image  # noqa: E501
 
         Send a local image to tag  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.tag_local_image_with_http_info(model_id, async_req=True)
+        >>> thread = api.tag_local_image_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
-        :param str model_id: Type your trained model id to predict. You get your model's id from Classify Dashboard. (required)
         :param file file:
+        :param str model_id:
         :param _return_http_data_only: response data without head status code
                                        and headers
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -876,8 +868,8 @@ class DefaultApi(object):
         local_var_params = locals()
 
         all_params = [
-            'model_id',
-            'file'
+            'file',
+            'model_id'
         ]
         all_params.extend(
             [
@@ -896,18 +888,12 @@ class DefaultApi(object):
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
-        # verify the required parameter 'model_id' is set
-        if self.api_client.client_side_validation and ('model_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['model_id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `model_id` when calling `tag_local_image`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
-        if 'model_id' in local_var_params and local_var_params['model_id'] is not None:  # noqa: E501
-            query_params.append(('model_id', local_var_params['model_id']))  # noqa: E501
 
         header_params = {}
 
@@ -915,6 +901,8 @@ class DefaultApi(object):
         local_var_files = {}
         if 'file' in local_var_params:
             local_var_files['file'] = local_var_params['file']  # noqa: E501
+        if 'model_id' in local_var_params:
+            form_params.append(('model_id', local_var_params['model_id']))  # noqa: E501
 
         body_params = None
         # HTTP header `Accept`

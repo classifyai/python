@@ -17,3 +17,4 @@ from __future__ import absolute_import
 # import models into model package
 from openapi_client.models.inline_object import InlineObject
 from openapi_client.models.inline_object1 import InlineObject1
+from openapi_client.models.inline_object2 import InlineObject2

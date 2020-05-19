@@ -1,11 +1,10 @@
-# InlineObject
+# InlineObject2
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**image_url** | **str** |  | 
-**tag** | **str** |  | 
-**model_id** | **str** |  | 
+**file** | **file** |  | [optional] 
+**model_id** | **str** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

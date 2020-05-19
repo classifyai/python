@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**create_new_model**](DefaultApi.md#create_new_model) | **PUT** /models | Create New Model
 [**delete_model**](DefaultApi.md#delete_model) | **DELETE** /models | Delete Model
 [**get_models_list**](DefaultApi.md#get_models_list) | **GET** /models | Get Models List
-[**index_by_image_url**](DefaultApi.md#index_by_image_url) | **GET** /index_by_image_url | Index by Using Image URL
+[**index_by_image_url**](DefaultApi.md#index_by_image_url) | **POST** /index_by_image_url | Index by Using Image URL
 [**index_image**](DefaultApi.md#index_image) | **POST** /index_image | Index Local Image
 [**tag_image_by_url**](DefaultApi.md#tag_image_by_url) | **GET** /predict_by_image_url | Tag Image by Using Image Url
 [**tag_local_image**](DefaultApi.md#tag_local_image) | **POST** /predict | Predict by Image
@@ -245,7 +245,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **index_by_image_url**
-> str index_by_image_url(model_id, image_url)
+> index_by_image_url(inline_object)
 
 Index by Using Image URL
 
@@ -285,13 +285,11 @@ configuration = openapi_client.Configuration(
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.DefaultApi(api_client)
-    model_id = 'model_id_example' # str | Model ID
-image_url = 'image_url_example' # str | Image URL
+    inline_object = openapi_client.InlineObject() # InlineObject | 
 
     try:
         # Index by Using Image URL
-        api_response = api_instance.index_by_image_url(model_id, image_url)
-        pprint(api_response)
+        api_instance.index_by_image_url(inline_object)
     except ApiException as e:
         print("Exception when calling DefaultApi->index_by_image_url: %s\n" % e)
 ```
@@ -300,12 +298,11 @@ image_url = 'image_url_example' # str | Image URL
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **model_id** | **str**| Model ID | 
- **image_url** | **str**| Image URL | 
+ **inline_object** | [**InlineObject**](InlineObject.md)|  | 
 
 ### Return type
 
-**str**
+void (empty response body)
 
 ### Authorization
 
@@ -313,8 +310,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -326,7 +323,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **index_image**
-> str index_image(model_id, file=file)
+> str index_image(model_id=model_id, tag=tag, file=file)
 
 Index Local Image
 
@@ -366,12 +363,13 @@ configuration = openapi_client.Configuration(
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.DefaultApi(api_client)
-    model_id = 'model_id_example' # str | Model ID
+    model_id = 'model_id_example' # str |  (optional)
+tag = 'tag_example' # str |  (optional)
 file = '/path/to/file' # file |  (optional)
 
     try:
         # Index Local Image
-        api_response = api_instance.index_image(model_id, file=file)
+        api_response = api_instance.index_image(model_id=model_id, tag=tag, file=file)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DefaultApi->index_image: %s\n" % e)
@@ -381,7 +379,8 @@ file = '/path/to/file' # file |  (optional)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **model_id** | **str**| Model ID | 
+ **model_id** | **str**|  | [optional] 
+ **tag** | **str**|  | [optional] 
  **file** | **file**|  | [optional] 
 
 ### Return type
@@ -487,7 +486,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tag_local_image**
-> tag_local_image(model_id, file=file)
+> tag_local_image(file=file, model_id=model_id)
 
 Predict by Image
 
@@ -527,12 +526,12 @@ configuration = openapi_client.Configuration(
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.DefaultApi(api_client)
-    model_id = 'model_id_example' # str | Type your trained model id to predict. You get your model's id from Classify Dashboard.
-file = '/path/to/file' # file |  (optional)
+    file = '/path/to/file' # file |  (optional)
+model_id = 'model_id_example' # str |  (optional)
 
     try:
         # Predict by Image
-        api_instance.tag_local_image(model_id, file=file)
+        api_instance.tag_local_image(file=file, model_id=model_id)
     except ApiException as e:
         print("Exception when calling DefaultApi->tag_local_image: %s\n" % e)
 ```
@@ -541,8 +540,8 @@ file = '/path/to/file' # file |  (optional)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **model_id** | **str**| Type your trained model id to predict. You get your model&#39;s id from Classify Dashboard. | 
  **file** | **file**|  | [optional] 
+ **model_id** | **str**|  | [optional] 
 
 ### Return type
 
